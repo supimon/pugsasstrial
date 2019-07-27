@@ -27,7 +27,7 @@ function compileJS() {
   return gulp
     .src("./src/pages/**/*.js")
     .pipe(webpack(require("./webpack.config.js")))
-    .pipe(gulp.dest("dist/homepage"))
+    .pipe(gulp.dest("dist"))
     .pipe(browserSync.stream());
 }
 // watch for changes

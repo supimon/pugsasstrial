@@ -1,12 +1,15 @@
 const path = require("path");
 const homepageJS = path.resolve(__dirname, "src/pages/homepage");
+const stickynavpageJS = path.resolve(__dirname, "src/pages/stickynavpage");
 
 module.exports = {
   entry: {
-    "home.min": homepageJS
+    homepage: homepageJS,
+    stickynavpage: stickynavpageJS
   },
   output: {
-    filename: "[name].js"
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name]/[name].js"
   },
   module: {
     rules: [

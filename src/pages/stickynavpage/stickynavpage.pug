@@ -1,0 +1,19 @@
+extends ../../layouts/defaultLayout.pug
+
+block pageStyles
+    link(rel="stylesheet", href="stickynavpage.css")
+
+block pageTitle
+    title Sticky Nav Page
+
+block content
+    .container 
+        h2 Some shit !!
+        h3 Motherfucker
+        include ../../components/stickynav/stickynav.pug
+        .forScroll
+
+block pageScripts
+    script(src="stickynavpage.js")
+
+
