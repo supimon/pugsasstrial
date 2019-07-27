@@ -1,21 +1,23 @@
 const gulp = require("gulp");
+const { series } = require("gulp");
 const sass = require("gulp-sass");
 const pug = require("gulp-pug");
 const babel = require("gulp-babel");
 const browserSync = require("browser-sync").create();
+
 // compile sass
 function style() {
   return gulp
     .src("./src/pages/**/*.scss")
     .pipe(sass().on("error", sass.logError))
-    .pipe(gulp.dest("./dist/css"))
+    .pipe(gulp.dest("./dist"))
     .pipe(browserSync.stream());
 }
 // compile pug
 function buildHTML() {
   return gulp
     .src("./src/pages/**/*.pug")
-    .pipe(pug().on("error", pug.logError))
+    .pipe(pug())
     .pipe(gulp.dest("./dist"))
     .pipe(browserSync.stream());
 }
@@ -26,9 +28,9 @@ function compileJS() {
     .pipe(
       babel({
         presets: ["@babel/env"]
-      }).on("error", babel.logError)
+      })
     )
-    .pipe(gulp.dest("./dist/js"))
+    .pipe(gulp.dest("./dist"))
     .pipe(browserSync.stream());
 }
 // watch for changes
@@ -47,3 +49,4 @@ exports.style = style;
 exports.buildHTML = buildHTML;
 exports.compileJS = compileJS;
 exports.watch = watch;
+exports.buildFiles = series(style, compileJS, buildHTML);
