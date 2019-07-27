@@ -3,6 +3,7 @@ const { series } = require("gulp");
 const sass = require("gulp-sass");
 const pug = require("gulp-pug");
 const babel = require("gulp-babel");
+const webpack = require("webpack-stream");
 const browserSync = require("browser-sync").create();
 
 // compile sass
@@ -25,12 +26,8 @@ function buildHTML() {
 function compileJS() {
   return gulp
     .src("./src/pages/**/*.js")
-    .pipe(
-      babel({
-        presets: ["@babel/env"]
-      })
-    )
-    .pipe(gulp.dest("./dist"))
+    .pipe(webpack(require("./webpack.config.js")))
+    .pipe(gulp.dest("dist/homepage"))
     .pipe(browserSync.stream());
 }
 // watch for changes
