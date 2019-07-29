@@ -1,0 +1,16 @@
+extends ../../layouts/defaultLayout.pug
+
+block pageStyles
+    link(rel="stylesheet", href="accordionpage.css")
+
+block pageTitle
+    title Accordion Page
+
+block content
+    .container 
+        h2 This is the accordion page !!
+
+        include ../../components/accordion/accordion.pug
+
+block pageScripts
+    script(src="accordionpage.js")
